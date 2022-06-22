@@ -23,4 +23,10 @@ class ProfileForm(forms.ModelForm):
         exclude = ['user','neighborhood','business']
 
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name']
+
+
 
