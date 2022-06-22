@@ -114,3 +114,26 @@ class Post(models.Model):
         posts = Post.objects.filter(id = id)
         return posts
 
+class Comment(models.Model):
+    name = models.CharField(max_length=30)
+    post = models.ForeignKey(Post,null = True,on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(NeighborHood,related_name='comment',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-id']
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def find_commentpost(cls,id):
+        comments = Comments.objects.filter(post__pk = id)
+        return comments
