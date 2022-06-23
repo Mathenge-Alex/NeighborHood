@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+
+<div class="container-fluid" id="pro">
+
+    <div id="hood"  class="row">
+
+        
+        {% for hood in hoods%}
+        <div class="card col-md-3 mx-3 margin-auto" id="hoody">
+            <p class="text-center"><strong>{{hood.name}}</strong>   </p>
+            <img class="card-img-top img-responsive"  src="{{hood.view.url}}" alt="Card image" />
+            <div class="card-body">
+
+                <div class="descript" style="display:flex; justify-content: space-between; ">
+                    <small> {{hood.location}}</small>
+                    <p class="card-text text-center" style="font-size:14px;"><small class="text-muted">Created
+                        {{hood.pub_date|timesince}} Ago</small></p>
+                    <a href="{% url 'join' neighborhood_id=hood.id %}"class="btn-sm btn-outline-primary"><small>Join</small></a>
+                    
+                </div>
+                
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endblock %}
