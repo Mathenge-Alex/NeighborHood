@@ -1,0 +1,62 @@
+{% load bootstrap4 %}
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    </head>
+
+    <div class="container-fluid" id="nav">
+
+        <div class="row" style="background-color:beige; height: 5rem; padding-top: 0.6rem;">
+                    
+            <div class="col-md-4" id="logo">
+                <a href="{% url 'home_page' %}" style="padding-top: 2rem; font-size: xx-large;"><strong>The Hood</strong></a>
+                
+                <div class="col-md-2 mx-3" style="text-align: center; padding-top: 1rem; font-size: 1rem; ">
+                    <a  style=""href="{% url 'newhood' %}" >Add Hood</a>
+    
+                </div>
+            </div>
+            
+
+            <div class="col-md-2" height="0.3rem;" style="padding-top: 0.7rem;margin-left: -3rem;"  width="1rem;">
+                <form class="navbar-form" role="search" action="">
+                    <input class="box px-3" type="text" name="search" placeholder="Search Here" id="input">
+                </form>
+
+            </div>
+
+            <div class="col-md-2" style="display:flex; " id="drop">
+                {% if user.is_authenticated %}
+
+                <div class="profile m-3 mx-5">
+                    <a href="{% url 'edit_profile' %}">Profile</a>
+                </div>
+                            
+                <div class="logout pt-3 mx-5">
+                    <a href="/logout">Logout</a>
+                </div>
+
+                {% else %}
+                <li style="list-style: none; display: flex;" class="pt-3 mx-5">
+                    <a href="/accounts/register/" style=" font-size: 13px;">SignUp</a>
+                    <a class='btn btn-default' href="/accounts/login" style=" font-size: 13px;">SignIn</a>
+                </li>
+
+                {% endif %}
+                {% if data.profile.Profile_photo %}
+                <img src="{{profile.profile.Profile_photo.url}}" alt="img" width="50px" height="50px ">
+                <h1 class="profile-user-name" style="font-size: 14px;">{{profile.username}}</h1>
+                {% endif %}
+            </div>
+
+            
+
+            {% if request.user.profile.neighborhood %}
+            <div class="row">
+                
+                <a style="" href="{% url 'hood' neighborhood_id=request.user.profile.neighborhood.id %}" >Current Hood</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
