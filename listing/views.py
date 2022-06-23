@@ -60,3 +60,10 @@ def upload_business(request):
     return render(request,'Business.html',locals())
 
 
+def convert_dates(dates):
+    day_number = dt.date.weekday(dates)
+
+    days = ['Monday','Tuesday','Wednesday','thursday','Friday','Saturday','Sunday']
+    day = days[day_number]
+    return day
+    
