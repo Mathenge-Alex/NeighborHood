@@ -127,3 +127,18 @@ def search_results(request):
         return render(request, 'search.html',locals())
 
 
+def one_post(request,post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+        return render(request, 'commentspace.html', locals())
+    return redirect('hood')
+
+
+def logout(request):
+    return render(request, 'home.html')
