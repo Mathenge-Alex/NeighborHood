@@ -80,3 +80,12 @@ def hood(request,neighborhood_id):
 
     return render(request,'hood.html',locals())
 
+
+@login_required(login_url='/accounts/login')
+def join(request,neighborhood_id):
+    hood = NeighborHood.objects.get(id=neighborhood_id)
+    current_user = request.user
+    current_user.profile.neighborhood = hood
+    current_user.profile.save()
+    return redirect('hood',neighborhood_id)
+
