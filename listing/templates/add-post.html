@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid" id="main-hood">
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" id="business">
+        <form action="{% url 'add_post' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form postform %}
+            <input type="submit" class="btn btn-primary" value="Add Post">
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+</div>
+{% endblock %}
