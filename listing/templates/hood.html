@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+<div class="container-fluid" id="single-hoody">
+    <h6 style="text-align: center">{{single_hood.name}}</h6>
+    <br>
+    <h6 style="text-align: center">{{single_hood.occupants.count}}</h6>
+    <br>
+    <div class="link">
+        <a href="{% url 'leave' neighborhood_id=single_hood.id %}" class="btn btn-outline-primary">Exit Hood</a>
+        <a href="{% url 'add_post' %}" class="btn btn-outline-primary">Post</a>
+        <a href="{% url 'upload_business' %}" class="btn btn-outline-primary">Add a Business</a>
+    
+    </div>
+
+
+    <h5>Businesses</h5>
+    <div class="row" id="biz1">
+        {% for biz in single_hood.business.all %}
+        <div class="card"  id="biz">
+            <img class="card-img-top img-responsive" src="{{biz.image.url}}" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">{{biz.name}}</h4>
+                <h6>By :{{biz.user}}</h6>
+        
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h5>Updates</h5>
+    <div class="row"  id="update" >
+        {% for conv in single_hood.posts.all %}
+        <div class="card" style="width:400px" id="pst">
+            <img class="card-img-top" src="{{conv.image.url}}" alt="Card image">
+            <div class="card-body">
+                <h5 class="card-title"><strong>{{conv.name}}</strong></h5>
+                <p class="card-text">{{conv.user.username}}</p>
+                <h6 class="card-text">{{conv.description}}</h6>
+                <h6 class="card-text">{{conv.pub_date}}</h6>
+            </div>
+            <h5><strong>Comments</strong></h5>
+            <a class="view-more"></a>
+            <div id="commentspace{{conv.id}}">
+                {% for comment in conv.comment.all|slice:":5"|slice:"::-1" %}
+                <li class="comment-list__comment" style="list-style: none;">
+
+                    <a href="{% url 'profile' }" class="user">
+                        <strong>{{ comment.user.username }}</strong>
+                    </a>
+                    <span class="comment">{{ comment.name }}</span>
+                </li>
+                {% endfor %}
+            </div>
+            {% if request.user.is_authenticated %}
+            <section class="input-row">
+                <i class="fa # submit-like" aria-hidden="true"></i>
+                <div class="comment-input-wrapper">
+                    <form action="{% url 'comment' post_id=conv.id %}" id="commentform{{conv.id}}" method="post"
+                        onsubmit="comment({{conv.id}});return false;">
+                        {% csrf_token %}
+                        <input class="add-comment" name="name" id="comment{{conv.id}}" type="text" placeholder="Add a comment..."
+                            style="padding-inline-end: 20px;">
+
+                    </form>
+                </div>
+                <div class="hidden-data {{ conv.pk }}" style="display: none;">
+                    <span class="post-pk">{{ conv.pk }}</span>
+                </div>
+            </section>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
