@@ -63,3 +63,34 @@ class NeighborHood(models.Model):
         hood = NeighborHood.objects.all()
         return hood
 
+
+class Business(models.Model):
+    name = models.CharField(max_length=50,blank=True)
+    image =  CloudinaryField("image")
+    user = models.ForeignKey(User, null = True,related_name='user',on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
+    neighborHood = models.ForeignKey(NeighborHood, null = True,related_name='business',on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-pk']
+
+    def save_business(self):
+        self.save()
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def get_business(cls, profile):
+        business = Business.objects.filter(Profile__pk = profile)
+        return business
+    
+    @classmethod
+    def get_all_business(cls):
+        project = Project.objects.all()
+        return project
+
+    @classmethod
+    def search(cls,search_term):
+        biz = cls.objects.filter(name__icontains=search_term)
+        return biz
