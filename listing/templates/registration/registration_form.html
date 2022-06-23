@@ -1,0 +1,53 @@
+{%extends "registration/base.html"%} {% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid" id="register">
+    <div class="row">
+ 
+        <div class="col-md-4">
+            {% if form.errors %}
+            <p> Some Information Might be Incorrect </p>
+            {% endif %}
+            <div class="card" id="user">
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" style="text-align: center; color: dimgray;">
+                          
+                            Sign up to the Hood.
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/accounts/register/" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Sign Up" style="background-color:#3897f0;padding-left: 110px;padding-right: 110px;">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+
+                </div>
+                <div class="card-footer text-center " id="footer">
+
+                
+
+                </div>
+                <div class="card text-center" id="on">
+                    <p>Have an account? <a href="/accounts/login/?next=/">sign-in</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+</div>
+
+{% endblock %}
