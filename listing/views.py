@@ -43,3 +43,20 @@ def newhood(request):
         hoodform = HoodForm()
     return render(request,'newhood.html',locals())
 
+
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        businessform = BusinessForm(request.POST, request.FILES)
+        if businessform.is_valid():
+            upload = businessform.save(commit=False)
+            upload.user=request.user
+            upload.neighborHood=request.user.profile.neighborhood
+            upload.save()
+        return redirect('hood',request.user.profile.neighborhood.id)
+    else:
+        businessform = BusinessForm()
+    return render(request,'Business.html',locals())
+
+
