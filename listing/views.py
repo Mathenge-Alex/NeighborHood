@@ -98,3 +98,32 @@ def leave(request,neighborhood_id):
     return redirect('home_page')
 
 
+@login_required(login_url='/accounts/login')
+def add_post(request):
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        postform = PostForm(request.POST, request.FILES)
+        if postform.is_valid():
+            post = postform.save(commit=False)
+            post.profile = request.user.profile
+            post.user = request.user
+            post.neighborHood=request.user.profile.neighborhood
+            post.save()
+            return redirect('hood',request.user.profile.neighborhood.id)
+    else:
+        postform = PostForm()
+    return render(request,'add-post.html',locals())
+
+
+@login_required(login_url='/accounts/login')
+def search_results(request):
+    business= Business.objects.all()
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        searched_business = Business.search(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',locals())
+
+
