@@ -124,7 +124,11 @@ def search_results(request):
         searched_business = Business.search(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',locals())
+        return render(request, 'search.html', locals())
+
+    else:
+        message = f"No results for {search_term} were found"
+        return redirect('search.html', locals())
 
 
 def one_post(request,post_id):
