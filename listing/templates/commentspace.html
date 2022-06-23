@@ -1,0 +1,9 @@
+{% for comment in item.comment.all|slice:":5"|slice:"::-1" %}
+<li class="comment-list__comment" style="list-style: none;">
+
+    <a href="{% url 'profile' }" class="user">
+        <strong>{{ comment.user.username }}</strong>
+    </a>
+    <span class="comment">{{ comment.name }}</span>
+</li>
+{% endfor %}
