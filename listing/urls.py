@@ -6,7 +6,7 @@ from django.conf import settings
 urlpatterns=[
     url(r'^$',views.home_page,name = 'home_page'),
     url(r'^edit$', views.edit, name='edit_profile'),
-    url(r'^hood/$', views.add_hood, name='add_hood'),
+    url(r'^hood/$', views.newhood, name='newhood'),
     url(r'^upload/$', views.upload_business, name='upload_business'),
     url(r'^join(?P<neighborhood_id>\d+)',views.join, name='join'),
     url(r'^one_hood(?P<neighborhood_id>\d+)',views.hood, name='hood'),
