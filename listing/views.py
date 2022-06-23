@@ -89,3 +89,12 @@ def join(request,neighborhood_id):
     current_user.profile.save()
     return redirect('hood',neighborhood_id)
 
+
+@login_required(login_url='/accounts/login')
+def leave(request,neighborhood_id):
+    current_user = request.user
+    current_user.profile.neighborhood = None
+    current_user.profile.save()
+    return redirect('home_page')
+
+
