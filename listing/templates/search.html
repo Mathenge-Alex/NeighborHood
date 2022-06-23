@@ -1,0 +1,31 @@
+{%extends 'all-images/base.html'%}
+{% block content %}
+<div class="container" id="search">
+
+    <div class="row">
+        {% if images%}
+        <h2>Found {{ business|length }} for {{message}}</h2>
+        {% else %}
+        <h2> No Results found for {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="row">
+
+        {% if business %}
+        {% for biz in business %}
+
+        <div class="col-md-6">
+            <div class="card">
+                <h1>{{biz.name}}</h1>
+                <img src="{{biz.view.url}}" class="image-responsive" style="height:300px;width:600px">
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
