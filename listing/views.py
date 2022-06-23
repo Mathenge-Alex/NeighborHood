@@ -30,3 +30,16 @@ def edit(request):
         form = ProfileForm()
     return render(request, 'profile/edit_profile.html', locals())
 
+@login_required(login_url='/accounts/login/')
+def newhood(request):
+    if request.method == 'POST':
+        hoodform = HoodForm(request.POST, request.FILES)
+        if hoodform.is_valid():
+            upload = hoodform.save(commit=False)
+            upload.profile = request.user.profile
+            upload.save()
+            return redirect('home_page')
+    else:
+        hoodform = HoodForm()
+    return render(request,'newhood.html',locals())
+
