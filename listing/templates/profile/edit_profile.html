@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid" id="all">
+
+    <div class="row edit-profile" >
+        <div class="col-md-4 edit-areas">
+            <h3>Account</h3>
+            {% if profile.profile.Profile_photo %}
+            <img src="{{profile.profile.Profile_photo.url}}" alt="img" width="120px" height="120px ">
+            {% endif %}
+            <br>
+            <h6>Bio</h6>
+            <br>
+            <p>{{user.profile.Bio}}</p>
+
+            <p><a class="my-3" href="/accounts/password/change"> Change Password</a></p>
+        </div>
+        <div class="col-md-8">
+            <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" class="btn btn-outline-primary" value="Update">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
