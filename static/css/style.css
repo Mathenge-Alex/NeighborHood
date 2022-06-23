@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+}
+body{
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}  
+#hood{
+    margin-top: 3rem;
+    width: 90%;
+    margin-left:5rem ;
+
+}
+.card{
+    margin-bottom: 1rem;
+    width: 30%;
+    padding-top: 1rem;
+    border-radius: 2rem;
+    background-color: white;
+}
+#nav{
+    padding: 0.5rem;
+    padding-left: 3rem;
+    color:black;
+}
+.dropdown-menu a{
+    color: #0b1016;
+    margin-left: 3rem;
+}
+.box{
+    border-radius: 2rem;
+}
+.navbar-form input{
+    width: 15rem;
+}
+
+.but a{
+    background-color: #d1911d;
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    color: white;
+    margin: 2rem;
+}
+.but{
+    margin-top: 2rem;
+}
+.card{
+    height: 30rem;
+}
+.card img{
+    height: 20rem;
+}
+
+#update .card{
+    height: 40rem;
+    margin-left: 3rem;
+    padding: 1rem;
+
+}
+#biz1 .card{
+    height: 30rem;
+    margin-left: 3rem;
+    padding: 1rem;
+    margin-bottom: 5rem;
+
+}
+.card-body input title{
+    display: none;
+}
+.link a{
+    justify-content: space-around;
+    text-align: center;
+    margin-left: 15rem;
+}
