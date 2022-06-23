@@ -5,7 +5,7 @@
 <div class="container-fluid" id="main-hood">
 <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8" id="business">
+    <div class="col-md-4 my-5" style="margin:0 auto;" id="business">
         <form action="{% url 'newhood' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form hoodform %}
