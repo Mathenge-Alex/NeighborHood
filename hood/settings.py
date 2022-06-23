@@ -145,9 +145,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 cloudinary.config( 
-    cloud_name = "jeddy", 
-    api_key = "136262568691725", 
-    api_secret = "D8mX4Rvxz6VyGLhZDIprEG26Q60" 
+    cloud_name = config('cloud_name'), 
+    api_key = config('api_key'), 
+    api_secret = config('api_secret'),
+    secure = True
 )
+
 django_heroku.settings(locals())
