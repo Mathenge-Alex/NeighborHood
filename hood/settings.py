@@ -34,7 +34,7 @@ DEBUG = True
 
 MODE=config("MODE", default="dev")
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY='django-insecure-%7th^k8i*wu5&q2_&=#f+$m&&i-xtgj(l-v)my9hd%p@!+%jnm'
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
