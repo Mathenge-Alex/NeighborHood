@@ -67,3 +67,16 @@ def convert_dates(dates):
     day = days[day_number]
     return day
     
+
+@login_required(login_url='/accounts/login/')
+def hood(request,neighborhood_id):
+    current_user = request.user
+    hood_name = current_user.profile.neighborhood
+    single_hood = NeighborHood.objects.get(id = request.user.profile.neighborhood.id)
+    business=Business.objects.get(id = request.user.profile.neighborhood.id)
+    comments = Comment.objects.all()
+    form = CommentForm(instance=request.user)
+    print(business)
+
+    return render(request,'hood.html',locals())
+
