@@ -2,7 +2,7 @@
 
 
 
-    <nav class="navbar sticky-top d-flex justify-content-around bg-info bg-opacity-15" style="height:5rem ;">
+    <nav class="navbar sticky-top d-flex justify-content-around navbar-dark bg-dark bg-opacity-1" style="height:5rem ;">
 
         <nav class="navbar navbar-expand-md navbar-light d-flex">
     
@@ -12,7 +12,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
     
-            <div class="collapse navbar-collapse " id="navbarNav">
+            <div class="collapse navbar-collapse"  id="navbarNav">
 
                 <div class="home">
                     <a class="navbar-brand pt-3" style="font-size:xx-large ;" href="{% url 'home_page' %}">
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="nav-item">
-                    <a class="nav-link text-primary" style="font-size:large ;" href="{% url 'newhood' %}"><strong>Create</strong></a>
+                    <a class="nav-link text-black" style="font-size:large ;" href="{% url 'newhood' %}"><strong>Create</strong></a>
                 </div> 
     
                 <ul class="navbar-nav mr-5 ">
@@ -43,8 +43,8 @@
         
                         {% else %}
                         <li style="list-style: none; display: flex;" class="pt-3 mx-2">
-                            <a href="/accounts/register/" class="mx-3" style=" font-size: 13px;">SignUp</a>
-                            <a class='btn btn-default mx-3 text-primary' href="/accounts/login/" style=" font-size: 13px;">SignIn</a>
+                            <a href="/accounts/register/" class="mx-3" style="font-size:large;">SignUp</a>
+                            <a class='btn btn-default mx-3 text-primary' href="/accounts/login/" style="font-size:large;">SignIn</a>
                         </li>
         
                         {% endif %}
@@ -57,7 +57,7 @@
                     {% if request.user.profile.neighborhood %}
                     <div class="row">
                         
-                        <a style="" href="{% url 'hood' neighborhood_id=request.user.profile.neighborhood.id %}" >Current Hood</a>
+                        <a class="pt-3 mx-5" style="font-size:large ;" href="{% url 'hood' neighborhood_id=request.user.profile.neighborhood.id %}" >Current Hood</a>
                     </div>
                     {% endif %}
                 
